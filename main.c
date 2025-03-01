@@ -1,4 +1,4 @@
-#include "find_roots.c"
+#include "find_roots.h"
 #include <stdio.h>
 #include <stdlib.h>
 
