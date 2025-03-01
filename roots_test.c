@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
-#include "find_roots.c"
+#include "find_roots.h"
 
 
 void test_find_roots_1() {
