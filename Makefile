@@ -8,25 +8,22 @@ check_fmt:
 	clang-format -style=LLVM -i `find -regex ".+\.[ch]"` --dry-run --Werror
 
 
-integral.o: integral.c integral.h
-	gcc -g -c integral.c -o integral.o
+nodes.o: nodes.c nodes.h
+	gcc -g -c nodes.c -o nodes.o
 
-func.o: func.c integral.h
-	gcc -g -c func.c -o func.o
-
-integral.a: integral.o func.o
-	ar rc integral.a integral.o func.o
+nodes.a: nodes.o
+	ar rc nodes.a nodes.o
 
 main.o: main.c
 	gcc -g -c main.c -o main.o -lm
 
 
+nodes_test.o: nodes_test.c nodes.h
+	gcc -g -c nodes_test.c -o nodes_test.o
 
-integral_test.o: integral_test.c
-	gcc -g -c integral_test.c -o integral_test.o
+nodes_test: nodes_test.o nodes.a
+	gcc -g -static -o nodes_test nodes_test.o nodes.a -lm
 
-integral_test: integral_test.o integral.a 
-	gcc -g -static -o integral_test integral_test.o integral.a -lm
-
-test: integral_test
-	./integral_test
+	
+test: nodes_test
+	./nodes_test
