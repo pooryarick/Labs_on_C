@@ -9,8 +9,7 @@ void test_find_roots_1() {
   double b = 0;
   double c = -1;
   double *res = find_roots(a, b, c, e);
-  assert(fabs(res[0] - 2) < e && fabs(res[1] + 1) < e &&
-         fabs(res[2] - 1) < e);
+  assert(fabs(res[0] - 2) < e && fabs(res[1] + 1) < e && fabs(res[2] - 1) < e);
 }
 void test_find_roots_2() {
   double e = 1E-7;
@@ -34,7 +33,8 @@ void test_find_roots_4() {
   double b = 0;
   double c = -1E-7;
   double *res = find_roots(a, b, c, e);
-  assert(fabs(res[0] - 2) < e && fabs(res[1] + 3e-4) < e && fabs(res[2] - 3e-4) < e);
+  assert(fabs(res[0] - 2) < e && fabs(res[1] + 3e-4) < e &&
+         fabs(res[2] - 3e-4) < e);
 }
 void test_find_roots_5() {
   double e = 1E-11;

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double *find_roots(double a, double b, double c,double e) {
+double *find_roots(double a, double b, double c, double e) {
   double d = b * b - 4 * c;
   double discr_acc = 1E-7;
   double *p;
@@ -13,8 +13,8 @@ double *find_roots(double a, double b, double c,double e) {
     printf("Can't find roots, a is 0 or extremely little\n");
     exit(0);
   } else {
-    b = b/a;
-    c = c/a;
+    b = b / a;
+    c = c / a;
     int sign;
     if (b >= 0) {
       sign = 1;
