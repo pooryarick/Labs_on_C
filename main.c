@@ -6,6 +6,6 @@ int main() {
   double b = 5;
   unsigned int n = 10000000;
 
-  printf("%lf\n", integral(sin, a, b, n));
+  printf("%lf\n", integral(sinus, a, b, n));
   return 0;
 }
