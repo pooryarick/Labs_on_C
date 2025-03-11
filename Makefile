@@ -8,22 +8,22 @@ check_fmt:
 	clang-format -style=LLVM -i `find -regex ".+\.[ch]"` --dry-run --Werror
 
 
-find_roots.o: find_roots.c find_roots.h
-	gcc -g -c find_roots.c -o find_roots.o -lm
+stack.o: stack.c stack.h
+	gcc -g -c stack.c -o stack.o
 
-roots.a: find_roots.o
-	ar rc roots.a find_roots.o -lm
+stack.a: stack.o
+	ar rc stack.a stack.o
 
 main.o: main.c
 	gcc -g -c main.c -o main.o -lm
 
 
+stack_test.o: stack_test.c
+	gcc -g -c stack_test.c -o stack_test.o
 
-roots_test.o: roots_test.c find_roots.h
-	gcc -g -c roots_test.c -o roots_test.o
+stack_test: stack_test.o stack.a
+	gcc -g -static -o stack_test stack_test.o stack.a -lm
 
-roots_test: roots_test.o roots.a 
-	gcc -g -static -o roots_test roots_test.o roots.a -lm
-
-test: roots_test
-	./roots_test
+test: stack_test
+	./stack_test
+	
