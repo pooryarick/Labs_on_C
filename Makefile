@@ -8,22 +8,22 @@ check_fmt:
 	clang-format -style=LLVM -i `find -regex ".+\.[ch]"` --dry-run --Werror
 
 
-stack.o: stack.c stack.h
-	gcc -g -c stack.c -o stack.o
+quadratic_equation.o: quadratic_equation.c quadratic_equation.h
+	gcc -g -c quadratic_equation.c -o quadratic_equation.o -lm
 
-stack.a: stack.o
-	ar rc stack.a stack.o
+quadratic_equation.a: quadratic_equation.o
+	ar rc quadratic_equation.a quadratic_equation.o -lm
 
 main.o: main.c
 	gcc -g -c main.c -o main.o -lm
 
 
-stack_test.o: stack_test.c
-	gcc -g -c stack_test.c -o stack_test.o
 
-stack_test: stack_test.o stack.a
-	gcc -g -static -o stack_test stack_test.o stack.a -lm
+quadratic_equation_test.o: quadratic_equation_test.c quadratic_equation.h
+	gcc -g -c quadratic_equation_test.c -o quadratic_equation_test.o
 
-test: stack_test
-	./stack_test
-	
+quadratic_equation_test: quadratic_equation_test.o quadratic_equation.a 
+	gcc -g -static -o quadratic_equation_test quadratic_equation_test.o quadratic_equation.a -lm
+
+test: quadratic_equation_test
+	./quadratic_equation_test
