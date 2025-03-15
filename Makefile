@@ -26,4 +26,7 @@ quadratic_equation_test: quadratic_equation_test.o quadratic_equation.a
 	gcc -g -static -o quadratic_equation_test quadratic_equation_test.o quadratic_equation.a -lm
 
 test: quadratic_equation_test
-	./quadratic_equation_test
+	@for test in $(shell find . -maxdepth 2 -type f -regex '.*_test'); do \
+		echo "$$test is running"; \
+		./$$test || exit 1; \
+	done
