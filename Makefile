@@ -25,5 +25,8 @@ stack_test: stack_test.o stack.a
 	gcc -g -static -o stack_test stack_test.o stack.a -lm
 
 test: stack_test
-	./stack_test
+	@for test in $(shell find . -maxdepth 2 -type f -regex '.*_test'); do \
+		echo "$$test is running"; \
+		./$$test || exit 1; \
+	done
 	
