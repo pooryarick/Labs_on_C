@@ -1,0 +1,6 @@
+.vscode/
+*.a
+*.o
+*_test
+git
+*.Identifier
